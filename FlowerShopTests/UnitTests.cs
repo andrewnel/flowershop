@@ -1,4 +1,7 @@
 using NUnit.Framework;
+using NSubstitute;
+using FlowerShop;
+using System.Collections.Generic;
 
 namespace Tests
 {
@@ -12,7 +15,17 @@ namespace Tests
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            //ARRANGE==========================
+            IClient c = Substitute.For<IClient>();
+            IOrderDAO y = Substitute.For<IOrderDAO>();
+            List<Flower> f = new List<Flower>();
+            IOrder o = new Order(y,c,false);
+
+
+            //ACT==============================
+            o.Deliver();
+            //ASSERT===========================
+            y.Received().SetDelivered(Arg.Any<IOrder>());
         }
     }
 }
