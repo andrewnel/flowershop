@@ -40,6 +40,7 @@ namespace Tests
             //ASSERT===========================
             // Adding 3 flowers with 20% markup each (The way Price should work)
             Assert.AreEqual(orderPrice, 3*1.2*f.Cost); 
+            
         }
     }
 }
