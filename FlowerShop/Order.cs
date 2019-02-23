@@ -8,6 +8,7 @@ namespace FlowerShop
     {
         private List<Flower> flowers;
         private bool isDelivered = false;
+        private IOrderDAO dao;
         public int Id { get; }
 
         // should apply a 20% mark-up to each flower.
@@ -43,6 +44,7 @@ namespace FlowerShop
             this.isDelivered = isDelivered;
             Client = client;
             Id = dao.AddOrder(client);
+            this.dao = dao;
         }
 
         public void AddFlowers(IFlower flower, int n)
@@ -52,7 +54,7 @@ namespace FlowerShop
 
         public void Deliver()
         {
-            throw new NotImplementedException();
+            dao.SetDelivered(this);
         }
     }
 }
